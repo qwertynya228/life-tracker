@@ -1,164 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
 <head> 
     <meta charset="UTF-8"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
     <link rel="stylesheet" href="style.css"> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
-</head> 
-<div class="app"> 
-    <header> <h2>LifeTracker</h2> </header> 
+</head>
+<body>  
+    <div class="app"> 
+        <header> <h2>LifeTracker</h2> </header> 
 
-    <!-- профиль --> 
-     <div id="profile" class="screen active"> 
-        <div class="avatar"> 
-            <img id="avatarImg"> 
+        <!-- профиль --> 
+        <div id="profile" class="screen active"> 
+            <div class="avatar"> 
+                <img id="avatarImg"> 
+            </div> 
+            <div class="avatarInput"> 
+                <input type="file" id="avatarInput" accept="image/*"> 
+            </div> <div class="profile-fields"> 
+                <div class="form-group"> 
+                    <label>Имя</label> 
+                    <input id="profileName" value="Пользователь"> 
+                </div> 
+                <div class="form-group"> 
+                    <label>О себе</label> 
+                    <textarea id="profileAbout">Напишите что-нибудь о себе</textarea> 
+                </div> <div class="form-group"> 
+                    <label>Дата рождения</label> 
+                    <input id="profileDOB" type="date"> 
+                </div> 
+                <button class="main-btn" id="saveProfileBtn">Сохранить</button> 
+            </div> 
         </div> 
-        <div class="avatarInput"> 
-            <input type="file" id="avatarInput" accept="image/*"> 
-        </div> <div class="profile-fields"> 
-            <div class="form-group"> 
-                <label>Имя</label> 
-                <input id="profileName" value="Пользователь"> 
-            </div> 
-            <div class="form-group"> 
-                <label>О себе</label> 
-                <textarea id="profileAbout">Напишите что-нибудь о себе</textarea> 
-            </div> <div class="form-group"> 
-                <label>Дата рождения</label> 
-                <input id="profileDOB" type="date"> 
-            </div> 
-            <button class="main-btn" id="saveProfileBtn">Сохранить</button> 
+
+        <!-- заметки --> 
+        <div id="notes" class="screen"> 
+            <input id="noteTitle" placeholder="Заголовок"> 
+            <div id="noteToolbar"> 
+                <button type="button" onclick="format('bold')"><b>B</b></button> 
+                <button type="button" onclick="format('italic')"><i>I</i></button> 
+                <button type="button" onclick="format('insertUnorderedList')">•</button> 
+                <button type="button" onclick="format('insertOrderedList')">1.</button> 
+            </div> <div id="noteText" contenteditable="true"></div> 
+            <button class="main-btn" onclick="addNote()">Добавить заметку</button> 
+            <div id="notesList"></div> 
         </div> 
-    </div> 
 
-    <!-- заметки --> 
-    <div id="notes" class="screen"> 
-        <input id="noteTitle" placeholder="Заголовок"> 
-        <div id="noteToolbar"> 
-            <button type="button" onclick="format('bold')"><b>B</b></button> 
-            <button type="button" onclick="format('italic')"><i>I</i></button> 
-            <button type="button" onclick="format('insertUnorderedList')">•</button> 
-            <button type="button" onclick="format('insertOrderedList')">1.</button> 
-        </div> <div id="noteText" contenteditable="true"></div> 
-        <button class="main-btn" onclick="addNote()">Добавить заметку</button> 
-        <div id="notesList"></div> 
-    </div> 
-
-    <!-- привычки --> 
-    <div id="habits" class="screen"> 
-        <div class="habit-date">Сегодня: <span id="todayDate"></span></div> 
-        <div class="habit-card"> 
-            <span>💧 Вода</span> 
-            <div class="habit-input"> 
-                <input id="water" placeholder="0.5 л" type="number" step="0.1"> 
-                <div> 
-                    <div class="habit-add-label">+0.5</div> 
-                    <button class="habit-add" data-habit="water" data-value="0.5">+</button> 
-                </div> 
-            </div> 
-            <div>Сегодня: 
-                <span id="waterToday">0</span> л</div> 
-            </div> 
-            <div class="habit-card"> <span>🏃 Спорт</span> 
-                <div class="habit-input"> 
-                    <input id="sport" placeholder="15 мин" type="number" step="1"> 
-                    <div class="habit-btn-label"> 
-                        <div class="habit-add-label">+10</div> 
-                        <button class="habit-add" data-habit="sport" data-value="10">+</button> 
-                    </div> 
-                </div> 
-                <div>Сегодня: 
-                    <span id="sportToday">0</span> мин
-                </div> 
-            </div> 
+        <!-- привычки --> 
+        <div id="habits" class="screen"> 
+            <div class="habit-date">Сегодня: <span id="todayDate"></span></div> 
             <div class="habit-card"> 
-                <span>📚 Чтение</span> 
+                <span>💧 Вода</span> 
                 <div class="habit-input"> 
-                    <input id="reading" placeholder="30 мин" type="number" step="1"> 
+                    <input id="water" placeholder="0.5 л" type="number" step="0.1"> 
                     <div> 
-                        <div class="habit-add-label">+10</div> 
-                        <button class="habit-add" data-habit="read" data-value="10">+</button> 
+                        <div class="habit-add-label">+0.5</div> 
+                        <button class="habit-add" data-habit="water" data-value="0.5">+</button> 
                     </div> 
                 </div> 
                 <div>Сегодня: 
-                    <span id="readToday">0</span> мин
+                    <span id="waterToday">0</span> л</div> 
                 </div> 
-            </div> 
-            <div class="habit-card"> <span>😴 Сон</span> 
-                <div class="habit-input"> 
-                    <input id="sleep" placeholder="8 ч" type="number" step="1"> 
-                    <div> 
-                        <div class="habit-add-label">+1</div> 
-                        <button class="habit-add" data-habit="sleep" data-value="1">+</button> 
+                <div class="habit-card"> <span>🏃 Спорт</span> 
+                    <div class="habit-input"> 
+                        <input id="sport" placeholder="15 мин" type="number" step="1"> 
+                        <div class="habit-btn-label"> 
+                            <div class="habit-add-label">+10</div> 
+                            <button class="habit-add" data-habit="sport" data-value="10">+</button> 
+                        </div> 
+                    </div> 
+                    <div>Сегодня: 
+                        <span id="sportToday">0</span> мин
                     </div> 
                 </div> 
-                <div>Сегодня: <span id="sleepToday">0</span> ч</div>
-            </div> 
-            <div class="habit-card"> <span>🚶 Прогулка</span> 
-                <div class="habit-input"> 
-                    <input id="walk" placeholder="20 мин" type="number" step="1"> <div> 
-                        <div class="habit-add-label">+10</div> 
-                        <button class="habit-add" data-habit="walk" data-value="10">+</button> 
+                <div class="habit-card"> 
+                    <span>📚 Чтение</span> 
+                    <div class="habit-input"> 
+                        <input id="reading" placeholder="30 мин" type="number" step="1"> 
+                        <div> 
+                            <div class="habit-add-label">+10</div> 
+                            <button class="habit-add" data-habit="read" data-value="10">+</button> 
+                        </div> 
+                    </div> 
+                    <div>Сегодня: 
+                        <span id="readToday">0</span> мин
                     </div> 
                 </div> 
-                <div>Сегодня: <span id="walkToday">0</span> мин</div> 
-            </div> 
-            <button class="main-btn" id="saveHabitsBtn">Сохранить прогресс</button> 
-    </div> 
-
-        <!-- статистика --> 
-         <div id="stats" class="screen"> 
-            <div class="stats-grid"> 
-                <div class="card">
-                    <div id="statStreak">0</div>
-                    <p>дней подряд</p>
+                <div class="habit-card"> <span>😴 Сон</span> 
+                    <div class="habit-input"> 
+                        <input id="sleep" placeholder="8 ч" type="number" step="1"> 
+                        <div> 
+                            <div class="habit-add-label">+1</div> 
+                            <button class="habit-add" data-habit="sleep" data-value="1">+</button> 
+                        </div> 
+                    </div> 
+                    <div>Сегодня: <span id="sleepToday">0</span> ч</div>
                 </div> 
-                <div class="card"><div id="statNotes">0</div><p>заметок</p></div> 
-                <div class="card"><div id="statWater">0</div><p>воды</p></div> 
-                <div class="card"><div id="statSport">0</div><p>спорт</p></div> 
-                <div class="card"><div id="statRead">0</div><p>чтение</p></div> 
-                <div class="card"><div id="statSleep">0</div><p>сон</p></div> 
-                <div class="card"><div id="statWalk">0</div><p>прогулка</p></div> 
-            </div> 
-            <div class="chart-box"> 
-                <canvas id="habitsChart"></canvas> 
-            </div> 
-            <div class="habit-date">Выбрать дату:</div> 
-            <div class="calendar"> 
-                <div class="calendar-header"> 
-                    <button id="prevMonth">←</button> 
-                    <span id="calendarTitle"></span> 
-                    <button id="nextMonth">→</button> 
+                <div class="habit-card"> <span>🚶 Прогулка</span> 
+                    <div class="habit-input"> 
+                        <input id="walk" placeholder="20 мин" type="number" step="1"> <div> 
+                            <div class="habit-add-label">+10</div> 
+                            <button class="habit-add" data-habit="walk" data-value="10">+</button> 
+                        </div> 
+                    </div> 
+                    <div>Сегодня: <span id="walkToday">0</span> мин</div> 
                 </div> 
-                <div class="calendar-grid" id="calendarDays"></div> 
-            </div> 
-            <div id="habitsByDate"></div> 
-            <div id="notesByDay"></div> 
-        </div>
-
-        <!-- нижнее меню --> 
-        <div class="nav"> 
-            <button onclick="openScreen('profile')">
-                <span class="material-icons">person</span>
-            </button> 
-            <button onclick="openScreen('notes')">
-                <span class="material-icons">edit_note</span>
-            </button> <button onclick="openScreen('habits')">
-                <span class="material-icons">task_alt</span>
-            </button> <button onclick="openScreen('stats')">
-                <span class="material-icons">bar_chart</span>
-            </button> <button onclick="openScreen('settings')">
-                <span class="material-icons">settings</span>
-            </button> 
+                <button class="main-btn" id="saveHabitsBtn">Сохранить прогресс</button> 
         </div> 
 
-        <!-- настройки --> 
-        <div id="settings" class="screen"> 
-            <h2>Настройки</h2> 
-            <div class="settings-item"> 
-                <label>Тема приложения:</label> 
-                <button id="themeToggleScreen">🌙 / ☀️</button> 
+            <!-- статистика --> 
+            <div id="stats" class="screen"> 
+                <div class="stats-grid"> 
+                    <div class="card">
+                        <div id="statStreak">0</div>
+                        <p>дней подряд</p>
+                    </div> 
+                    <div class="card"><div id="statNotes">0</div><p>заметок</p></div> 
+                    <div class="card"><div id="statWater">0</div><p>воды</p></div> 
+                    <div class="card"><div id="statSport">0</div><p>спорт</p></div> 
+                    <div class="card"><div id="statRead">0</div><p>чтение</p></div> 
+                    <div class="card"><div id="statSleep">0</div><p>сон</p></div> 
+                    <div class="card"><div id="statWalk">0</div><p>прогулка</p></div> 
+                </div> 
+                <div class="chart-box"> 
+                    <canvas id="habitsChart"></canvas> 
+                </div> 
+                <div class="habit-date">Выбрать дату:</div> 
+                <div class="calendar"> 
+                    <div class="calendar-header"> 
+                        <button id="prevMonth">←</button> 
+                        <span id="calendarTitle"></span> 
+                        <button id="nextMonth">→</button> 
+                    </div> 
+                    <div class="calendar-grid" id="calendarDays"></div> 
+                </div> 
+                <div id="habitsByDate"></div> 
+                <div id="notesByDay"></div> 
+            </div>
+
+            <!-- нижнее меню --> 
+            <div class="nav"> 
+                <button onclick="openScreen('profile')">
+                    <span class="material-icons">person</span>
+                </button> 
+                <button onclick="openScreen('notes')">
+                    <span class="material-icons">edit_note</span>
+                </button> <button onclick="openScreen('habits')">
+                    <span class="material-icons">task_alt</span>
+                </button> <button onclick="openScreen('stats')">
+                    <span class="material-icons">bar_chart</span>
+                </button> <button onclick="openScreen('settings')">
+                    <span class="material-icons">settings</span>
+                </button> 
             </div> 
-            <!-- можно добавлять ещё настройки сюда --> 
-        </div> 
-</div>
-<script src="script.js"></script>
+
+            <!-- настройки --> 
+            <div id="settings" class="screen"> 
+                <h2>Настройки</h2> 
+                <div class="settings-item"> 
+                    <label>Тема приложения:</label> 
+                    <button id="themeToggleScreen">🌙 / ☀️</button> 
+                </div> 
+                <!-- можно добавлять ещё настройки сюда --> 
+            </div> 
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Регистрация Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/public/sw.js')
+                .then(reg => console.log('Service Worker зарегистрирован:', reg))
+                .catch(err => console.log('Ошибка регистрации SW:', err));
+        }
+    </script>
+</body>
+</html>

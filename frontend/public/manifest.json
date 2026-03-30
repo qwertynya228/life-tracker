@@ -1,6 +1,6 @@
 {
-    "name": "Мой день",
-    "short_name": "Мой день",
+    "name": "Мои привычки",
+    "short_name": "Привычки",
     "description": "Персональный дневник",
     "start_url": "/",
     "display": "standalone",
