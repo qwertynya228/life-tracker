@@ -8,10 +8,6 @@ services:
     container_name: my-pwa-app
     ports:
       - "8080:80"
-    volumes:
-      - ./frontend/public:/usr/share/nginx/html/public
-      - ./frontend/src:/usr/share/nginx/html/src
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     restart: unless-stopped
     networks:
       - pwa-network
