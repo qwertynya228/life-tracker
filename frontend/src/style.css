@@ -1,0 +1,517 @@
+/* базовые переменные для темы свет/тем */ 
+:root { 
+    --bg: #f0f2f5; 
+    --app-bg: #fff; 
+    --header-bg: #c2928a; 
+    --card-bg: #f7f7f7; 
+    --btn-bg: #c2928a; 
+    --btn-hover: #a57c75; 
+    --text-color: #000; 
+    --input-bg: #fff; 
+    --input-border: #ddd; 
+    --label-color: #555; 
+} 
+
+/* тёмная тема */ 
+[data-theme="dark"] { 
+    --bg: #12172a; /* темный фон страницы */ 
+    --app-bg: #1c2035; /* фон приложения */ 
+    --header-bg: #1a2a50; /* тёмно-синий header */ 
+    --card-bg: #242b4a; /* карточки и поля ввода */ 
+    --btn-bg: #1a2a50; /* кнопки основной цвет */ 
+    --btn-hover: #34497c; /* кнопки при наведении */ 
+    --text-color: #eee; /* цвет текста */ 
+    --input-bg: #2a3055; 
+    --input-border: #3a4270; 
+    --label-color: #aaa; 
+} 
+
+* { 
+    transition: background 0.3s, color 0.3s, border 0.3s; 
+} 
+
+h4 { 
+    margin: 0 0 0 0; 
+} 
+
+/* кнопки */ 
+.main-btn, .habit-add, .note-btn, #themeToggleScreen, .day-btn, .nav button { 
+    background: var(--btn-bg); 
+    color: var(--text-color); 
+    border:none; 
+    border-radius:12px; 
+    cursor:pointer; 
+    transition: all 0.2s; 
+} 
+
+.main-btn:hover, .habit-add:hover, .note-btn:hover, #themeToggleScreen:hover, .day-btn:hover, .nav button:hover { 
+    background: var(--btn-hover); 
+} 
+
+/* карточки и контейнеры */ 
+.habit-card, .note, .card, .settings-item, .day-btn, .nav button { 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    border-radius:12px; 
+    padding:15px; 
+    margin-bottom:12px; 
+    border:none; 
+    transition: all 0.3s; 
+} 
+
+/* кнопки дни недели */ 
+.day-btn, .nav button { 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    font-weight:bold; 
+    cursor:pointer; 
+    border-radius:8px; 
+    padding:8px 12px; 
+    border:none; 
+} 
+
+.day-btn:hover, .nav button:hover { 
+    background: var(--btn-bg); 
+    color: var(--text-color); 
+    transform:scale(1.05); 
+} 
+
+.day-btn.active, .nav button.active {
+    background: var(--btn-bg); 
+    color: var(--text-color); 
+    transform:scale(1.1); 
+} 
+
+/* карточки статистики */ 
+.card { 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    border-radius:12px; 
+    padding:20px; 
+    text-align:center; 
+} 
+
+.card div { 
+    font-size:28px; 
+    font-weight:bold; 
+} 
+
+body { 
+    background: var(--bg); 
+    color: var(--text-color); 
+    margin:0; 
+    font-family:Arial; 
+    display:flex; 
+    justify-content:center; 
+} 
+
+.app { 
+    width:100%; 
+    max-width:420px; 
+    background: var(--app-bg); 
+    min-height:100vh; 
+    display:flex; 
+    flex-direction:column; 
+} 
+
+header { 
+    text-align:center; 
+    padding:0; 
+    font-size:15px; 
+    font-weight:bold; 
+    border-bottom:1px solid #eee; 
+    background: var(--header-bg); 
+    color: var(--text-color); 
+} 
+
+/* экраны */ 
+.screen { 
+    display:none; 
+    padding:20px; 
+    flex:1; 
+    overflow:auto; 
+    opacity:0; 
+    transform:translateX(30px); 
+    transition:all 0.35s ease; 
+    pointer-events:none; 
+} 
+
+.screen.active { 
+    opacity:1; 
+    transform:translateX(0); 
+    pointer-events:auto; 
+} 
+
+.active { display:block; } 
+
+/* ===== профиль ===== */ 
+.profile-fields {
+    display:flex; 
+    flex-direction:column; 
+    gap:10px; 
+} 
+
+.profile-fields .form-group { 
+    display:flex; 
+    flex-direction:column; 
+    gap:4px; 
+} 
+
+/*кнопка сохранить, создать заметку и сохранить прогресс в профиле*/ 
+.main-btn { 
+    width: 100%; 
+    padding: 14px; 
+    background: var(--btn-bg); 
+    color: var(--text-color); 
+    border: none; 
+    border-radius: 12px; 
+    font-size: 15px; 
+    cursor: pointer; 
+} 
+
+.main-btn:hover { background: var(--btn-hover); } 
+
+.profile-fields input, .profile-fields textarea{ 
+    width:100%; 
+    max-width:100%; 
+    padding: 14px; 
+    margin-top: 5px; 
+    margin-bottom: 10px; 
+    box-sizing:border-box; 
+    border-radius: 10px; 
+    border:1px solid #ddd; 
+    font-size: 14px; 
+} 
+
+/* input и textarea */ 
+input, textarea { 
+    background: var(--input-bg); 
+    color: var(--text-color); 
+    border:1px solid var(--input-border); 
+    border-radius:10px; 
+    padding:12px;
+    width:100%; 
+    box-sizing:border-box; 
+} 
+
+input:focus, textarea:focus { 
+    outline: none; 
+    border: 1px solid var(--btn-bg); 
+    box-shadow: 0 0 5px var(--btn-bg); 
+} 
+
+textarea { 
+    min-height:80px; 
+    resize:vertical; 
+} 
+
+/* маленькие надписи */ 
+.habit-add-label, label { color: var(--label-color); } 
+
+/* аватар */ 
+.avatar { 
+    width:100px; 
+    height:100px; 
+    border-radius:50%; 
+    background:#ddd; 
+    margin:10px auto 20px; 
+    overflow:hidden; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+} 
+
+.avatar img { 
+    width:100%; 
+    height:100%; 
+    object-fit:cover; 
+} 
+
+.avatarInput { 
+    display: flex; 
+    justify-content:center; 
+} 
+
+#avatarInput { 
+    margin-top: 5px; 
+    margin-bottom: 10px; 
+    padding: 9px; 
+    border-radius: 10px; 
+    border: 1px solid #ddd; 
+    font-size: 14px; 
+} 
+
+/* ===== привычки ===== */ 
+.habit-date { 
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;  
+    margin-bottom: 15px; 
+    font-weight: bold; 
+} 
+
+#today-date { 
+    margin-left: 8px; 
+    color: #555;
+} 
+
+#water, #sport, #reading, #sleep, #walk { 
+    padding: 12px; 
+    margin-top: 8px; 
+    margin-bottom: 15px; 
+    border-radius: 10px; 
+    border: 1px solid #ddd; 
+    font-size: 14px; 
+} 
+
+.habit-card { 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    border-radius:12px; 
+    padding:15px; 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    margin-bottom:12px; 
+    font-size:15px; 
+} 
+
+.habit-input { 
+    display:flex; 
+    gap: 10px; 
+} 
+
+.habit-input input { 
+    width:60px; 
+    text-align:center; 
+} 
+
+.habit-btn-label{
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    gap: 2px; 
+} 
+
+.habit-add { 
+    padding: 6px 10px; 
+    font-size: 18px; 
+    background: #c2928a; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: 0.2s; 
+} 
+
+.habit-add:hover { transform:scale(1.05); } 
+
+.habit-add-label {
+    font-size:12px; 
+    color:#555;
+} 
+
+/* ===== заметки ===== */ 
+#noteTitle{ 
+    width: 100%; 
+    padding: 12px; 
+    margin-top: 8px; 
+    margin-bottom: 15px; 
+    border-radius: 10px; 
+    border: 1px solid #ddd; 
+    font-size: 14px; 
+} 
+
+#noteToolbar { 
+    margin-bottom: 8px; 
+    display: flex; 
+    gap: 5px; 
+} 
+
+#noteText { 
+    min-height:80px; 
+    padding:12px; 
+    border:1px solid #ddd; 
+    border-radius:10px; 
+    margin:8px 0 15px; 
+    font-size:14px; 
+} 
+
+.note { 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    padding:15px; 
+    border-radius:12px; 
+    margin-top:15px; 
+} 
+
+.note-btn { 
+    border:none; 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    border-radius:6px; 
+    padding:6px 12px; 
+    cursor:pointer; 
+    font-size:14px; 
+    transition:0.2s; 
+} 
+
+.note-btn:hover {
+    transform:scale(1.05);
+    background: var(--btn-hover);
+} 
+
+/* ===== статистика ===== */ 
+.stats-grid {
+    display:grid; 
+    grid-template-columns:1fr 1fr; 
+    gap:15px;
+} 
+
+.card { 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    border-radius:12px; 
+    padding:20px; 
+    text-align:center;
+} 
+
+.card div {
+    font-size:28px; 
+    font-weight:bold;
+} 
+
+/* ===== нижнее меню ===== */ 
+.nav { 
+    display:flex; 
+    justify-content:center; 
+    gap:15px; 
+    padding:10px 0; 
+    border-top:1px solid #eee; 
+    background: var(--app-bg); 
+    position:sticky; 
+    bottom:0; 
+} 
+
+/* кнопки дни недели и nav */ 
+.week-days { 
+    display:flex; 
+    justify-content: space-between; 
+    margin-top:10px; 
+} 
+
+.day-btn, .nav button { 
+    padding:8px 12px;
+    border:none; 
+    border-radius:8px; 
+    background: var(--card-bg); 
+    color: var(--text-color); 
+    cursor:pointer; 
+    font-weight:bold; 
+    transition:0.2s; 
+} 
+
+.day-btn:hover, .nav button:hover { 
+    background: var(--btn-bg); 
+    color:white; 
+    transform:scale(1.05); 
+} 
+
+.day-btn.active, .nav button.active { 
+    background: var(--btn-bg); 
+    color:white; 
+    transform:scale(1.1); 
+} 
+
+.habit-add { 
+    background: var(--btn-bg); 
+    color: var(--text-color); 
+} 
+
+/* ===== экран настройки ===== */ 
+.settings-item { 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    padding:12px; 
+    background: var(--card-bg); 
+    border-radius:12px; 
+    margin-bottom:12px; 
+} 
+
+#themeToggleScreen { 
+    padding:8px 14px; 
+    font-size:16px; 
+    border:none; 
+    border-radius:8px; 
+    cursor:pointer; 
+    background: var(--btn-bg); 
+    color: var(--text-color); 
+    transition:0.2s; 
+}
+
+#themeToggleScreen:hover { background: var(--btn-hover); } 
+
+.calendar { 
+    background: var(--card-bg); 
+    padding: 15px; 
+    border-radius: 12px; 
+} 
+
+.calendar-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px; 
+    font-weight: bold; 
+} 
+
+.calendar-header button { 
+    background: var(--btn-bg); 
+    color: var(--text-color); 
+    border: none; 
+    padding: 6px 10px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+} 
+
+.calendar-grid { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 5px; 
+} 
+
+.calendar-day { 
+    padding: 10px; 
+    text-align: center; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    background: var(--input-bg); 
+}
+
+.calendar-day:hover { background: var(--btn-hover); } 
+
+.calendar-day.active { 
+    background: var(--btn-bg); 
+    color: white; 
+    transform: scale(1.1); 
+} 
+
+.chart-box{ 
+    background: var(--card-bg); 
+    padding: 15px; 
+    border-radius: 12px; 
+    margin-bottom: 15px;
+    width: 93%;
+    height: 280px; 
+    position: relative;  
+} 
+
+.chart-box canvas {
+  display: block;
+}
+
+#habitsChart { 
+    width: 100% !important; 
+    height: 100% !important; 
+}
