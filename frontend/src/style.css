@@ -243,17 +243,22 @@ textarea {
 
 /* ===== привычки ===== */ 
 .habit-date { 
-    display: block;
+    display: flex;
     justify-content: flex-start; 
     align-items: center;  
     margin-bottom: 15px; 
     font-weight: bold; 
+    white-space: nowrap; 
+    flex-wrap: nowrap;
 } 
 
 #todayDate { 
     display: inline-block;
     margin-left: 8px; 
-    color: #555;
+    color: var(--label-color);
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; /* Если всё же не влезает, добавляем многоточие */
 } 
 
 #water, #sport, #reading, #sleep, #walk { 
@@ -517,4 +522,15 @@ textarea {
 #habitsChart { 
     width: 100% !important; 
     height: 100% !important; 
+}
+
+/* адаптивность для маленьких экранов */
+@media (max-width: 380px) {
+    .habit-date {
+        font-size: 14px;
+    }
+    
+    #todayDate {
+        margin-left: 5px;
+    }
 }
