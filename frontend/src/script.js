@@ -50,10 +50,7 @@ window.onload = function(){
     let today = new Date(); 
     const monthNames = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"]; 
     const todayDateEl = document.getElementById("todayDate"); 
-    if(todayDateEl) todayDateEl.innerText = `
-        ${today.getDate()} 
-        ${monthNames[today.getMonth()]}
-    `; 
+    todayDateEl.textContent = `${today.getDate()} ${monthNames[today.getMonth()]}`;
 
     // === дни недели (календарь) === 
     document.querySelectorAll(".day-btn").forEach(btn=>{ 
