@@ -1,10 +1,10 @@
-const CACHE_NAME = 'my-day-v1';
+const CACHE_NAME = 'my-hobbies-v1';
 const urlsToCache = [
     '/',
     '/index.html',
     '/style.css',
     '/script.js',
-    '/manifest.json',
+    '/public/manifest.json',
     '/public/192.png',
     '/public/512.png',
     '/public/1080.png',
@@ -21,12 +21,7 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            })
+            .then(response => response || fetch(event.request))
     );
 });
 
