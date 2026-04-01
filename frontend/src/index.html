@@ -173,7 +173,7 @@
     <script>
         // Регистрация Service Worker - правильный путь
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('/public/sw.js')
                 .then(reg => console.log('Service Worker зарегистрирован:', reg))
                 .catch(err => console.log('Ошибка регистрации SW:', err));
         }
