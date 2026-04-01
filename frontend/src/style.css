@@ -247,10 +247,13 @@ textarea {
     justify-content: space-between;; 
     align-items: center;  
     margin-bottom: 15px; 
+    margin-top: 0;
+    padding: 10px 15px;
+    width: 93%;
+    box-sizing: border-box;
     font-weight: bold; 
     white-space: nowrap; 
     flex-wrap: nowrap;
-    gap: 8px;
 } 
 
 #todayDate { 
@@ -528,10 +531,11 @@ textarea {
 @media (max-width: 380px) {
     .habit-date {
         font-size: 14px;
-        gap: 4px;
+        padding: 8px 12px;
     }
     
     #todayDate {
-        margin-left: 5px;
+        font-size: 12px;
+        padding: 3px 10px;
     }
 }
