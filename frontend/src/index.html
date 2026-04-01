@@ -53,7 +53,11 @@
 
         <!-- привычки --> 
         <div id="habits" class="screen"> 
-            <div class="habit-date">Сегодня: <span id="todayDate"></span></div> 
+
+            <div class="habit-date">
+                Сегодня: <span id="todayDate"></span>
+            </div> 
+
             <div class="habit-card"> 
                 <span>💧 Вода</span> 
                 <div class="habit-input"> 
@@ -64,53 +68,61 @@
                     </div> 
                 </div> 
                 <div>Сегодня: 
-                    <span id="waterToday">0</span> л</div> 
+                    <span id="waterToday">0</span> л
                 </div> 
-                <div class="habit-card"> <span>🏃 Спорт</span> 
-                    <div class="habit-input"> 
-                        <input id="sport" placeholder="15 мин" type="number" step="1"> 
-                        <div class="habit-btn-label"> 
-                            <div class="habit-add-label">+10</div> 
-                            <button class="habit-add" data-habit="sport" data-value="10">+</button> 
-                        </div> 
-                    </div> 
-                    <div>Сегодня: 
-                        <span id="sportToday">0</span> мин
-                    </div> 
-                </div> 
-                <div class="habit-card"> 
-                    <span>📚 Чтение</span> 
-                    <div class="habit-input"> 
-                        <input id="reading" placeholder="30 мин" type="number" step="1"> 
-                        <div> 
-                            <div class="habit-add-label">+10</div> 
-                            <button class="habit-add" data-habit="read" data-value="10">+</button> 
-                        </div> 
-                    </div> 
-                    <div>Сегодня: 
-                        <span id="readToday">0</span> мин
+            </div> 
+
+            <div class="habit-card"> 
+                <span>🏃 Спорт</span> 
+                <div class="habit-input"> 
+                    <input id="sport" placeholder="15 мин" type="number" step="1"> 
+                    <div class="habit-btn-label"> 
+                        <div class="habit-add-label">+10</div> 
+                        <button class="habit-add" data-habit="sport" data-value="10">+</button> 
                     </div> 
                 </div> 
-                <div class="habit-card"> <span>😴 Сон</span> 
-                    <div class="habit-input"> 
-                        <input id="sleep" placeholder="8 ч" type="number" step="1"> 
-                        <div> 
-                            <div class="habit-add-label">+1</div> 
-                            <button class="habit-add" data-habit="sleep" data-value="1">+</button> 
-                        </div> 
-                    </div> 
-                    <div>Сегодня: <span id="sleepToday">0</span> ч</div>
+                <div>Сегодня: 
+                    <span id="sportToday">0</span> мин
                 </div> 
-                <div class="habit-card"> <span>🚶 Прогулка</span> 
-                    <div class="habit-input"> 
-                        <input id="walk" placeholder="20 мин" type="number" step="1"> <div> 
-                            <div class="habit-add-label">+10</div> 
-                            <button class="habit-add" data-habit="walk" data-value="10">+</button> 
-                        </div> 
+            </div> 
+
+            <div class="habit-card"> 
+                <span>📚 Чтение</span> 
+                <div class="habit-input"> 
+                    <input id="reading" placeholder="30 мин" type="number" step="1"> 
+                    <div> 
+                        <div class="habit-add-label">+10</div> 
+                        <button class="habit-add" data-habit="read" data-value="10">+</button> 
                     </div> 
-                    <div>Сегодня: <span id="walkToday">0</span> мин</div> 
                 </div> 
-                <button class="main-btn" id="saveHabitsBtn">Сохранить прогресс</button> 
+                <div>Сегодня: 
+                    <span id="readToday">0</span> мин
+                </div> 
+            </div> 
+
+            <div class="habit-card"> <span>😴 Сон</span> 
+                <div class="habit-input"> 
+                    <input id="sleep" placeholder="8 ч" type="number" step="1"> 
+                    <div> 
+                        <div class="habit-add-label">+1</div> 
+                        <button class="habit-add" data-habit="sleep" data-value="1">+</button> 
+                    </div> 
+                </div> 
+                <div>Сегодня: <span id="sleepToday">0</span> ч</div>
+            </div> 
+
+            <div class="habit-card"> <span>🚶 Прогулка</span> 
+                <div class="habit-input"> 
+                    <input id="walk" placeholder="20 мин" type="number" step="1"> 
+                    <div> 
+                        <div class="habit-add-label">+10</div> 
+                        <button class="habit-add" data-habit="walk" data-value="10">+</button> 
+                    </div> 
+                </div> 
+                <div>Сегодня: <span id="walkToday">0</span> мин</div> 
+            </div> 
+
+            <button class="main-btn" id="saveHabitsBtn">Сохранить прогресс</button> 
         </div> 
 
             <!-- статистика --> 
